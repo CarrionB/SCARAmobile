@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "967010276163",
+    "firebase_url": "https://scara-db.firebaseio.com",
+    "project_id": "scara-db",
+    "storage_bucket": "scara-db.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:967010276163:android:74322951f2b35760bd55f6",
+        "android_client_info": {
+          "package_name": "com.scaramobile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "967010276163-0d4lg0pl4dg6fg2s310fr6gskud4hbf2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCqUA9JDbKlTcndJdDSElEBVcXIQaZoLw4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "967010276163-0d4lg0pl4dg6fg2s310fr6gskud4hbf2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
