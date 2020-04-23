@@ -1,7 +1,7 @@
 //import liraries
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Image } from 'react-native';
-import images from '../res/images';
+import images from '../../res/images';
 
 // create a component
 const Logo = (props) => {
@@ -9,8 +9,10 @@ const Logo = (props) => {
         <View>
             <Image 
                 source = {images.logoLobo} 
-                style={{height:props.logoHeight, 
-                        width:props.logoWidth}}
+                style={{
+                    height:props.logoHeight, 
+                    width:props.logoWidth
+                }}
             />
         </View>
     );

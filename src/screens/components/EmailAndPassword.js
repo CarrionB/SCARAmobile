@@ -2,9 +2,12 @@
 import React, { Component } from 'react';
 import { 
     Dimensions, View, Text, StyleSheet, 
-    TextInput, TouchableOpacity 
+    TextInput, TouchableOpacity, Alert  
 } from 'react-native';
 import { connect } from 'react-redux';
+import { login, isLoggedIn } from '../../store/actions/authActions'
+import { getData } from '../../store/actions/initActions';
+import { getRequest } from '../../store/actions/requestActions';
 
 const HEIGHT = Dimensions.get('window').height;
 const WIDTH = Dimensions.get('window').width;
@@ -17,22 +20,46 @@ class EmailAndPassword extends Component {
     constructor(props){
         super(props);
         this.state = {
-            email:'',
-            password:'',
-            error:'',
-            errorMessage: '',
+            credentials: {
+                email:'',
+                password:'',
+            },
             loading: false,
-            errorVisible: false       
+            errorVisible: false     
         }
         this.inputRef = React.createRef();
     }
 
-    onButtonPress() {
-
+    onButtonPress = () => {
+        this.inputRef.current.blur();
+        if(this.state.credentials.email != '' && this.state.credentials.password != '')
+        {
+            this.props.login(this.state.credentials);
+            this.props.isLoggedIn();
+            if(this.props.loggedIn){
+                this.props,getRequest();
+                this.props.getData();
+            }
+        }
+        else
+        {
+            Alert.alert(
+                "Aviso",
+                "Debe llenar todos los campos",
+                [
+                    { 
+                        text: "OK"
+                    }
+                ],
+                {   
+                    cancelable: false 
+                }
+            );
+        }
     }
-
     
     render() {
+        const {authError} = this.props
         return (
             <View style={styles.container}>
                 <TextInput 
@@ -40,7 +67,13 @@ class EmailAndPassword extends Component {
                     ref={this.inputRef} 
                     style= {styles.input} 
                     value = {this.state.email}
-                    onChangeText = {email=>this.setState({email})}
+                    onChangeText = {email => 
+                        this.setState(prevState => ({
+                            credentials: {
+                                ...prevState.credentials,
+                                email: email
+                            }
+                        }))}
                     onSubmitEditing = {this.onButtonPress}
                     onFocus = {this.props.changeOffsetOnFocus}
                     onBlur = {this.props.changeOffsetOnBlur}
@@ -51,7 +84,14 @@ class EmailAndPassword extends Component {
                     style= {styles.input} 
                     secureTextEntry
                     value = {this.state.password}
-                    onChangeText = {password=>this.setState({password})}
+                    onChangeText = {password=>
+                        this.setState(prevState => ({
+                            credentials: {
+                                ...prevState.credentials,
+                                password: password
+                            }
+                        }))
+                    }
                     onSubmitEditing = {this.onButtonPress}
                     onFocus = {this.props.changeOffsetOnFocus}
                     onBlur = {this.props.changeOffsetOnBlur}
@@ -63,6 +103,11 @@ class EmailAndPassword extends Component {
                         Login
                     </Text>
                 </TouchableOpacity>
+                { 
+                    authError ? <Text style = {{color: 'red'}}>
+                        Login Failed
+                    </Text> : null 
+                }
                 {/* {this._renderSubComp()} */}
                 
             </View> 
@@ -104,12 +149,25 @@ const styles = StyleSheet.create({
         padding:8,
         marginLeft: WIDTH*0.1,
         marginRight: WIDTH*0.1,
-
         borderRadius:8
     }
 });
 
+const mapStateToProps = (state) => {
+    return {
+        authError: state.auth.authError,
+        loggedIn: state.auth.loggedIn,
+    }
+}
 
+const mapDispatchToProps = (dispatch) =>{
+    return{
+        login: (credentials) => dispatch(login(credentials)),
+        isLoggedIn: () => dispatch(isLoggedIn()),
+        getData: () => dispatch(getData()),
+        getRequest: () => dispatch(getRequest()),
+    }
+}
 
 //make this component available to the app
-export default connect()(EmailAndPassword);
+export default connect(mapStateToProps, mapDispatchToProps)(EmailAndPassword);

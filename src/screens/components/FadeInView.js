@@ -16,7 +16,7 @@ const FadeInView = (props) => {
                 useNativeDriver: true,
                 }
             ).start();
-        }.bind(this), 5000);
+        }.bind(this), 1000);
     }, [])
   
     return (

@@ -4,6 +4,7 @@ const images = {
     iconReport: require('./images/reportIcon.png'),
     iconReserva: require('./images/reservasIcon.png'),
     logoLobo: require('./images/logoLobo1.png'),
+    logoEPN: require('./images/EPN_logo.png'),
     presentation: require('./images/presentation.gif'),
 }
   

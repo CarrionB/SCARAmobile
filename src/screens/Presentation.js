@@ -1,6 +1,6 @@
 //import liraries
 import React, { Component } from 'react';
-import { Dimensions, Image, View, Text, StyleSheet } from 'react-native';
+import { Dimensions, Image, View, StyleSheet } from 'react-native';
 import images from '../res/images';
 
 const WIDTH = Dimensions.get('window').width;
@@ -14,9 +14,9 @@ class Presentation extends Component {
                 <Image
                     source = {images.presentation}
                     style = {{
-                                height: HEIGHT,
-                                width: WIDTH
-                            }}
+                            height: HEIGHT,
+                            width: WIDTH
+                        }}
                 >
                 </Image>
             </View>
@@ -27,6 +27,7 @@ class Presentation extends Component {
 // define your styles
 const styles = StyleSheet.create({
     container: {
+        top: 0,
         backgroundColor: 'white',
     },
 });

@@ -1,34 +1,44 @@
 //import liraries
 import React, { Component } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import Login from './screens/Login'
-import ReservationRequest from './screens/ReservationRequest'
-import Presentation from './screens/Presentation'
+import { View, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
+import { DrawerNavigator, Login, Presentation} from './screens';
+import { isLoggedIn } from './store/actions/authActions';
+import { getRequest } from './store/actions/requestActions'
+import { getData } from './store/actions/initActions'
+import { styles } from './res/styles';
 
 class SCARAMain extends Component {
 
     state = {
         presentationON: true,
     }
+    unsubscriber = null;
 
     componentDidMount(){
-        console.log(this.state.presentationON)
-        this.hidePresentation()
+        this.hidePresentation();
     }
 
     hidePresentation() {
+        setTimeout(function(){
+            this.props.isLoggedIn();
+            console.log(this.props.loggedIn)
+            if(this.props.loggedIn){
+                this.props.getRequest();
+                this.props.getData();
+            }
+        }.bind(this), 0)
         setTimeout(function(){
             this.setState({presentationON:false});
         }.bind(this), 5000);
     }
 
     render() {
-        console.log(this.props)
+        const {loggedIn} = this.props;
         return (
-            <View style={styles.container}>
+            <View style={styles.appContainer}>
                 {this.state.presentationON && <Presentation/>}
-                <ReservationRequest/>
+                {!this.state.presentationON && (!loggedIn ? <Login/> : <DrawerNavigator/>)}
             </View>
         );
     }
@@ -36,19 +46,17 @@ class SCARAMain extends Component {
 
 const mapStateToProps = (state) =>{
     return {
-        test: state.req.obj,
+        loggedIn: state.auth.loggedIn,
     }
 }
 
-// define your styles
-const styles = StyleSheet.create({
-    container: {
-        position: 'absolute',
-        justifyContent: 'center',
-        height: '100%',
-        width: '100%'
-      },
-});
+const mapDispatchToProps = (dispatch) =>{
+    return{
+        isLoggedIn: () => dispatch(isLoggedIn()),
+        getRequest: () => dispatch(getRequest()),
+        getData: () => dispatch(getData())
+    }
+}
 
 //make this component available to the app
-export default connect(mapStateToProps)(SCARAMain);
+export default connect(mapStateToProps,mapDispatchToProps)(SCARAMain);
