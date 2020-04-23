@@ -6,5 +6,5 @@ Cliente móvil desarrollado en React Native para Android
 
 Para desarrollar este proyecto se uso 
 
-* React 16.13.1
+* React Native 16.13.1
 * Node 12.6.0
