@@ -3,7 +3,7 @@ import { Image, View, Text } from 'react-native';
 import { connect } from 'react-redux';
 import { DataTable, ImageButton, MenuHeader } from './components';
 import images from '../res/images';
-import { tableWidthArrs } from '../res/constants';
+import { tableWidthArrs, resizeFactor } from '../res/constants';
 import { styles } from '../res/styles';
 
 class HomeScreen extends Component {
@@ -32,7 +32,10 @@ class HomeScreen extends Component {
           </Text>
 
           <View style = {styles.margin}>
-            <Text style = {styles.text}>
+            <Text style = {[
+              styles.text,
+              {marginTop: 7 * resizeFactor}
+            ]}>
               Solicitudes enviadas
             </Text>
             <DataTable
