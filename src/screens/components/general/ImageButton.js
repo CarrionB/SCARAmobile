@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Image, Text, TouchableOpacity } from 'react-native';
-import { styles } from '../../res/styles';
+import { styles } from '../../../res/styles';
 
 class ImageButton extends Component {
   constructor(props) {

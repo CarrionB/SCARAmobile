@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { Image, View, Text } from 'react-native';
+import { NavigationEvents } from 'react-navigation';
 import { connect } from 'react-redux';
-import { DataTable, ImageButton, MenuHeader } from './components';
-import images from '../res/images';
-import { tableWidthArrs, resizeFactor } from '../res/constants';
-import { styles } from '../res/styles';
+import { DataTable, ImageButton, MenuHeader } from '../components';
+import images from '../../res/images';
+import { tableWidthArrs, resizeFactor } from '../../res/constants';
+import { styles } from '../../res/styles';
+import { getRequest } from '../../store/actions/requestActions';
 
 class HomeScreen extends Component {
   constructor(props) {
@@ -16,6 +18,13 @@ class HomeScreen extends Component {
   render() {
     return (
       <View style = {styles.container}>
+        <NavigationEvents
+          onWillFocus={payload => {
+            setTimeout(function() {
+              this.props.getRequest();
+            }.bind(this), 0);
+          }}
+        />
         <View style = {styles.menuHeader}>
           <MenuHeader navigation ={this.props.navigation}/>
         </View>
@@ -78,4 +87,11 @@ const mapStateToProps = (state) =>{
   }
 }
 
-export default connect(mapStateToProps, null)(HomeScreen);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getRequest: () => dispatch(getRequest())
+  }
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen);

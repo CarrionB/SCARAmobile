@@ -1,20 +1,18 @@
-import AlertBox from './AlertBox';
-import Button from './Button';
-import CheckBoxContainer from './CheckBoxContainer';
-import DataTable from './DataTable';
-import DateTimeBox from './DateTimeBox';
-import EmailAndPassword from './EmailAndPassword';
-import FadeInView from './FadeInView';
-import ImageButton from './ImageButton';
-import Logo from './Logo';
-import Loading from './Loading'
-import MenuDrawer from './MenuDrawer';
-import MenuHeader from './MenuHeader';
-import PickerBox from './PickerBox';
-import Results from "./Results";
+import Button from './general/Button';
+import CheckBoxContainer from './general/CheckBoxContainer';
+import DataTable from './general/DataTable';
+import DateTimeBox from './general/DateTimeBox';
+import EmailAndPassword from './general/EmailAndPassword';
+import FadeInView from './general/FadeInView';
+import ImageButton from './general/ImageButton';
+import Logo from './general/Logo';
+import Loading from './modals/Loading'
+import MenuDrawer from './menu/MenuDrawer';
+import MenuHeader from './menu/MenuHeader';
+import PickerBox from './general/PickerBox';
+import Results from "./modals/Results";
 
 export {
-  AlertBox,
   Button,
   CheckBoxContainer,
   DataTable,

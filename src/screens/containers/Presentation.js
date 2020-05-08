@@ -1,7 +1,7 @@
 //import liraries
 import React, { Component } from 'react';
 import { Dimensions, Image, View, StyleSheet } from 'react-native';
-import images from '../res/images';
+import images from '../../res/images';
 
 const WIDTH = Dimensions.get('window').width;
 const HEIGHT = Dimensions.get('window').height;

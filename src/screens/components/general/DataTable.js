@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Dimensions, View, ScrollView, StyleSheet } from 'react-native';
-import { Table, TableWrapper, Row } from 'react-native-table-component';
+import { Table, Row } from 'react-native-table-component';
 
 const {width, height} = Dimensions.get('window')
 let resizeFactor = (height+width)/(570+330);
@@ -26,12 +26,10 @@ class DataTable extends Component {
 
     const rowHeaderWidth = [widthArr[0]]
 
-    for (let i = 7; i < 20; i += 1) {
+    for (let i = 7; i < 20; i ++) {
       rowHeader.push([i + '-' + (i + 1)]);
     }
 
-    console.log(resizeFactor)
-    
     return (
       <View 
         style = {[

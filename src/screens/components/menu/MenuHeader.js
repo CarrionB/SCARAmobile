@@ -7,12 +7,12 @@ import {
   StyleSheet, 
   TouchableWithoutFeedback } from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign';
-import images from '../../res/images';
+import images from '../../../res/images';
 import { Alert } from 'react-native';
 import { connect } from 'react-redux';
-import { logout, isLoggedIn } from '../../store/actions/authActions'
-import { resizeFactor } from '../../res/constants';
-import { styles } from '../../res/styles';
+import { logout, isLoggedIn } from '../../../store/actions/authActions'
+import { resizeFactor } from '../../../res/constants';
+import { styles } from '../../../res/styles';
 
 class MenuHeader extends Component {
   constructor(props) {

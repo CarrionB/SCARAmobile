@@ -1,7 +1,7 @@
 //import liraries
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, ActivityIndicator } from 'react-native';
-import { width, height } from '../../res/constants';
+import { width, height } from '../../../res/constants';
 
 class Loading extends Component {
   constructor(props) {

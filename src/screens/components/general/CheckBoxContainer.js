@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 import { CheckBox } from 'react-native-elements'
-import { styles } from '../../res/styles';
+import { styles } from '../../../res/styles';
 
 class CheckBoxContainer extends Component {
   constructor(props) {

@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import { Text, View } from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { connect } from 'react-redux';
-import { Button, Loading, Results, MenuHeader, PickerBox, DateTimeBox } from './components';
-import { tableHeaders, tableWidthArrs, resizeFactor } from '../res/constants';
-import { styles } from '../res/styles';
-import { getSchedule } from '../store/actions/scheduleActions'
+import { Button, Loading, Results, MenuHeader, PickerBox, DateTimeBox } from '../components';
+import { tableHeaders, tableWidthArrs, resizeFactor } from '../../res/constants';
+import { styles } from '../../res/styles';
+import { getSchedule } from '../../store/actions/scheduleActions'
 
 class ClassroomList extends Component {
   constructor(props) {
@@ -20,6 +20,7 @@ class ClassroomList extends Component {
       showLoading: false,
       showResults: false
     };
+    
     this.onButtonPress = this.onButtonPress.bind(this);
     this.onClassValueChange = this.onClassValueChange.bind(this);
     this.return = this.return.bind(this);
@@ -27,12 +28,11 @@ class ClassroomList extends Component {
     this.showDatepicker = this.showDatepicker.bind(this);
   }
 
-  onClassValueChange = (itemValue, itemIndex) => 
-  {
+  onClassValueChange = (itemValue, itemIndex) => {
     this.setState(prevState => ({
-      queryData: {                   // object that we want to update
-          ...prevState.queryData,    // keep all other key-value pairs
-          selectedClass: itemValue       // update the value of specific key
+      queryData: {                   
+        ...prevState.queryData,    
+        selectedClass: itemValue       
       }
     }))
   }
@@ -57,7 +57,7 @@ class ClassroomList extends Component {
         selectedDate: date       // update the value of specific key
       },
       showDatePicker: false
-    }) );
+    }));
   }
 
   setStartEndOfWeek = (date) => {
@@ -75,10 +75,6 @@ class ClassroomList extends Component {
     {
       startOfWeek.setDate(startOfWeek.getDate()-6)
     }
-
-    this.setState({
-      startOfWeek:startOfWeek,
-      endOfWeek:endOfWeek})
     
     var weekLabel = 'Semana del: ' + 
       this.dateToString(startOfWeek) + 
@@ -165,7 +161,8 @@ class ClassroomList extends Component {
           onButtonPress = {this.onButtonPress}
         />
 
-        { this.state.showDatePicker && 
+        { 
+          this.state.showDatePicker && 
           <DateTimePicker 
             value={this.state.queryData.selectedDate}
             mode='date'

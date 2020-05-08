@@ -5,10 +5,10 @@ import {
     View, Text, ImageBackground 
     } from 'react-native';
 import { connect } from 'react-redux';
-import { EmailAndPassword, FadeInView, Logo } from './components'
-import images from '../res/images';
-import { resizeFactor } from '../res/constants';
-import { styles } from '../res/styles';
+import { EmailAndPassword, FadeInView, Logo } from '../components'
+import images from '../../res/images';
+import { resizeFactor } from '../../res/constants';
+import { styles } from '../../res/styles';
 
 // create a component
 class Login extends Component {
@@ -19,9 +19,9 @@ class Login extends Component {
           offset: 10,
           inputIsFocused: false,
           logoHeight: 200 * resizeFactor,
-          logoWidth: 200 * resizeFactor
+          logoWidth: 200 * resizeFactor,
         };
-
+        
         this._keyboardDidHide=this._keyboardDidHide.bind(this);
         this._keyboardDidShow=this._keyboardDidShow.bind(this);
     }
@@ -110,7 +110,6 @@ class Login extends Component {
                     </ImageBackground>
                 </FadeInView>
             </View>
-            
         );
     }
 }

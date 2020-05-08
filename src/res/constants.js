@@ -29,4 +29,11 @@ const tableWidthArrs = {
         width*(2/9), width*(2/9) ],
 }
 
-export { tableWidthArrs, tableHeaders, resizeFactor, width, height };
+const authErrors = {
+  error0: 'The email address is badly formatted.',
+  error1: 'The password is invalid or the user does not have a password.',
+  error2: 'There is no user record corresponding to this identifier. The user may have been deleted.',
+  error3: 'An internal error has occurred. [ 7: ]',
+}
+
+export { authErrors, tableWidthArrs, tableHeaders, resizeFactor, width, height };

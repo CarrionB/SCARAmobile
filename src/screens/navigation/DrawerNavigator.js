@@ -7,7 +7,7 @@ import {
     ClassroomList,
     HomeScreen,
     ReservationRequest,
-} from '../'
+} from '..'
 import { MenuDrawer } from '../components'
 
 const { width, height } = Dimensions.get('window')
@@ -16,26 +16,26 @@ const DrawerConfig = {
     drawerWidth: width*0.75,
     drawerHeight: height,
     contentComponent: ({ navigation }) => {
-		return(<MenuDrawer navigation={navigation}/>)
-	}
+		  return(<MenuDrawer navigation={navigation}/>)
+	  }
 }
 
 const DrawerNavigator = createDrawerNavigator(
-    {
-        Home:{
-            screen: HomeScreen
-        },
-        ListaAulas:{
-            screen: ClassroomList
-        },
-        Registros:{
-            screen: AttendanceRecord
-        },
-        Solicitud:{
-            screen: ReservationRequest
-        }
+  {
+    Home:{
+      screen: HomeScreen
     },
-    DrawerConfig
+    ListaAulas:{
+      screen: ClassroomList
+    },
+    Registros:{
+      screen: AttendanceRecord
+    },
+    Solicitud:{
+      screen: ReservationRequest
+    }
+  },
+  DrawerConfig
 )
 
 export default createAppContainer(DrawerNavigator);

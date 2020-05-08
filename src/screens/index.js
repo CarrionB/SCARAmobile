@@ -1,9 +1,9 @@
-import AttendanceRecord from './AttendanceRecord'
-import ClassroomList from './ClassroomList'
-import HomeScreen from './HomeScreen'
-import Login from './Login'
-import Presentation from './Presentation'
-import ReservationRequest from './ReservationRequest'
+import AttendanceRecord from './containers/AttendanceRecord'
+import ClassroomList from './containers/ClassroomList'
+import HomeScreen from './containers/HomeScreen'
+import Login from './containers/Login'
+import Presentation from './containers/Presentation'
+import ReservationRequest from './containers/ReservationRequest'
 import DrawerNavigator from './navigation/DrawerNavigator'
 
 export {

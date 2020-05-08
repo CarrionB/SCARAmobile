@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import { Alert, View, Text } from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { connect } from 'react-redux';
-import { MenuHeader, Button, CheckBoxContainer, DateTimeBox, PickerBox, Loading, Results } from './components';
-import { tableHeaders, tableWidthArrs, resizeFactor } from '../res/constants';
-import { styles } from '../res/styles';
-import { getRecords } from '../store/actions/recordActions';
+import { MenuHeader, Button, CheckBoxContainer, DateTimeBox, PickerBox, Loading, Results } from '../components';
+import { tableHeaders, tableWidthArrs, resizeFactor } from '../../res/constants';
+import { styles } from '../../res/styles';
+import { getRecords } from '../../store/actions/recordActions';
 
 class AttendanceRecord extends Component {
   constructor(props) {
@@ -137,29 +137,30 @@ class AttendanceRecord extends Component {
   }
 
   setDate = (event, date) => {
-    date = date || this.state.date;
-    console.log(date);
-    switch (this.state.dateToPick){
-      case 'start':
-        this.setState(prevState => ({
-          queryData: {                   // object that we want to update
-            ...prevState.queryData,    // keep all other key-value pairs
-            selectedStartDate: date       // update the value of specific key
-          },
-          showDatePicker: false
-        }));
-        break;
-      case 'end':
-        this.setState(prevState => ({
-          queryData: {                   // object that we want to update
-            ...prevState.queryData,    // keep all other key-value pairs
-            selectedEndDate: date       // update the value of specific key
-          },
-          showDatePicker: false
-        }));
-        break;
-      default:
-        break;
+    if(typeof date !== 'undefined')
+    {
+      switch (this.state.dateToPick){
+        case 'start':
+          this.setState(prevState => ({
+            queryData: {                   // object that we want to update
+              ...prevState.queryData,    // keep all other key-value pairs
+              selectedStartDate: date       // update the value of specific key
+            },
+            showDatePicker: false
+          }));
+          break;
+        case 'end':
+          this.setState(prevState => ({
+            queryData: {                   // object that we want to update
+              ...prevState.queryData,    // keep all other key-value pairs
+              selectedEndDate: date       // update the value of specific key
+            },
+            showDatePicker: false
+          }));
+          break;
+        default:
+          break;
+      }
     }
   }
 

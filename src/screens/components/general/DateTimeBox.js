@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { View, Text, TouchableWithoutFeedback } from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign';
-import { styles } from '../../res/styles';
-import { width, resizeFactor } from '../../res/constants';
+import { styles } from '../../../res/styles';
+import { width, resizeFactor } from '../../../res/constants';
 
 class DateTimeBox extends Component {
   constructor(props) {

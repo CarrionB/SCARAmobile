@@ -14,7 +14,6 @@ const requestReducer = (state = initState, action) => {
             };
         case 'CREATE_REQUEST_ERROR':
             console.log('Error', action.error);
-            alert("Hello! I am an alert box!!");
             return {
                 ...state,
                 error: true

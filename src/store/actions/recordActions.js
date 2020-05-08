@@ -10,7 +10,8 @@ export const getRecords = (queryData, groupList) => {
         
         //console.log(records);
 
-        if(records != null){
+        if(records != null)
+        {
           var keysRecords = Object.keys(records)
           var recordsAux = [];
           //keysRecords.reverse();
@@ -28,10 +29,6 @@ export const getRecords = (queryData, groupList) => {
 
               if(queryData.filterActivated)
               {
-                //console.log('filtro')
-
-                //console.log(queryData.selectedGroup, records[item].NombreGr)
-                //console.log(queryData.selectedSubject, records[item].NombreMat)
                 if(queryData.selectedGroup !== records[item].NombreGr ||
                   queryData.selectedSubject !== records[item].NombreMat)
                 {
@@ -57,12 +54,7 @@ export const getRecords = (queryData, groupList) => {
                         // console.log(ranura.HoraInicio, ranura.Horafin);
                         var horaInicio = new Date(ranura.HoraInicio);
                         var horaFin = new Date(ranura.Horafin);
-                        var strHorIni = horaInicio.getUTCHours() + ':' + horaInicio.getMinutes() + ':' + horaInicio.getSeconds();
-                        var strHorFin = horaFin.getUTCHours() + ':' + horaFin.getMinutes() + ':' + horaFin.getSeconds();
-                        var strHorReg = fechaReg.getUTCHours() + ':' + fechaReg.getMinutes() + ':' + fechaReg.getSeconds();
-                        // console.log(strHorIni, strHorFin, strHorReg);
-                        // console.log(strHorFin >= strHorReg);
-                        // console.log(strHorIni <= strHorReg);
+
                         if(horaFin.getUTCHours() >= fechaReg.getUTCHours() && horaInicio.getUTCHours() <= fechaReg.getUTCHours())
                         {
                           console.log('ranura valida');
@@ -107,7 +99,7 @@ export const getRecords = (queryData, groupList) => {
                                 rowData.push(records[item].NombreGr);
                                 rowData.push(records[item].NombreAula);
                                 rowData.push(fechaRegAux.getFullYear() + '-' +
-                                (fechaRegAux.getMonth()+1) + '-' + fechaRegAux.getDate());
+                                  (fechaRegAux.getMonth()+1) + '-' + fechaRegAux.getDate());
                                 rowData.push(horaInicio.getUTCHours());
                                 rowData.push(horaFin.getUTCHours());
 
@@ -131,11 +123,12 @@ export const getRecords = (queryData, groupList) => {
                               rowData.push(records[item].NombreGr);
                               rowData.push(records[item].NombreAula);
                               rowData.push(fechaRegAux.getFullYear() + '-' +
-                              (fechaRegAux.getMonth()+1) + '-' + fechaRegAux.getDate());
+                                (fechaRegAux.getMonth()+1) + '-' + fechaRegAux.getDate());
                               rowData.push(horaInicio.getUTCHours());
                               rowData.push(horaFin.getUTCHours());
                               rowData.push(fechaRegAux.getUTCHours()+":"+fechaRegAux.getMinutes());
-                              rowData.push(new Date(recordsAux[recordsAux.length - 1].Fecha).getUTCHours()+":"+new Date(recordsAux[recordsAux.length - 1].Fecha).getMinutes());
+                              rowData.push(new Date(recordsAux[recordsAux.length - 1].Fecha).getUTCHours()
+                                +":"+new Date(recordsAux[recordsAux.length - 1].Fecha).getMinutes());
                               table.push(rowData);
                             }
                           }

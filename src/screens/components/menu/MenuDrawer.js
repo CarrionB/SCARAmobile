@@ -8,7 +8,7 @@ import {
 	StyleSheet,
 	TouchableOpacity,
 } from 'react-native';
-import { getUserInfo } from '../../store/actions/authActions'
+import { getUserInfo } from '../../../store/actions/authActions'
 import { connect } from 'react-redux';
 
 const WIDTH = Dimensions.get('window').width 
@@ -24,7 +24,6 @@ class MenuDrawer extends Component {
 	}
 	
 	componentDidMount() {
-		console.log('xd')
 	}
 
   navLink(nav, text) {
@@ -46,15 +45,17 @@ class MenuDrawer extends Component {
 					<View style={styles.topLinks}>
 						<View style={styles.profile}>
 							<View style={styles.imgView}>
-                                <Image 
-                                    style={styles.img} 
-                                    source = {{uri:userInfo.photoUrl}} 
-                                />
+								<Image 
+									style={styles.img} 
+									source = {{
+										uri:userInfo.photoUrl
+									}} 
+								/>
 							</View>
 							<View style={styles.profileText}>
 								<Text style={styles.name}>
-                                    {userInfo.name}
-                                </Text>
+									{userInfo.name}
+								</Text>
 							</View>
 						</View>
 					</View>
@@ -67,9 +68,11 @@ class MenuDrawer extends Component {
 				</ScrollView>
 				<View style={styles.footer}>
 					<Text style={styles.description}>
-                        Sistema de Control de Acceso y Registro de Asistencia
-                    </Text>
-					<Text style={styles.version}>v1.0</Text>
+							Sistema de Control de Acceso y Registro de Asistencia
+					</Text>
+					<Text style={styles.version}>
+						v1.0
+					</Text>
 				</View>
 			</View>
 		)
@@ -87,7 +90,6 @@ const mapDispatchToProps = (dispatch) =>{
         getUserInfo: () => dispatch(getUserInfo())
     }
 }
-
 
 const styles = StyleSheet.create({
 	container: {

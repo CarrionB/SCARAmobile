@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import { DataTable, Button } from '.';
-import { width, height, resizeFactor } from '../../res/constants';
+import { DataTable, Button } from '..';
+import { width, height, resizeFactor } from '../../../res/constants';
 
 class Results extends Component {
   constructor(props) {

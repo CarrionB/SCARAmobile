@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { Alert, View, Text } from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { connect } from 'react-redux';
-import { createRequest } from '../store/actions/requestActions';
-import { MenuHeader, Button, DateTimeBox, PickerBox, Loading } from './components';
-import { styles } from '../res/styles';
+import { createRequest } from '../../store/actions/requestActions';
+import { MenuHeader, Button, DateTimeBox, PickerBox, Loading } from '../components';
+import { styles } from '../../res/styles';
 
 class ReservationRequest extends Component {
     
@@ -48,9 +48,19 @@ class ReservationRequest extends Component {
     {
       if(HoraIni < HoraFin)
       {
-        console.log(this.state.requestToSend);
-        this.props.createRequest(this.state.requestToSend);
-        this.sleep();
+        if(HoraFin - HoraIni < 3)
+        {
+          console.log(this.state.requestToSend);
+          this.props.createRequest(this.state.requestToSend);
+          this.sleep();
+        }
+        else
+        {
+          this.showAlert(
+            "Aviso",
+            'El periodo de clases no puede ser mayor a 3 horas'
+          )
+        }
       }
       else
       {
@@ -66,9 +76,19 @@ class ReservationRequest extends Component {
       {
         if (HoraIni > new Date().getHours().valueOf())
         {
-          console.log(this.state.requestToSend);
-          this.props.createRequest(this.state.requestToSend);
-          this.sleep();
+          if(HoraFin - HoraIni <= 3)
+          {
+            console.log(this.state.requestToSend);
+            this.props.createRequest(this.state.requestToSend);
+            this.sleep();
+          }
+          else
+          {
+            this.showAlert(
+              "Aviso",
+              'No se puede tomar mas de 3 horas seguidas de clase'
+            )
+          }
         }
         else
         {

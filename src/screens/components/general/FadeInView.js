@@ -8,15 +8,15 @@ const FadeInView = (props) => {
 
     React.useEffect(() => {
         setTimeout(function(){
-            Animated.timing(
-                fadeAnim,
-                {
-                toValue: 1,
-                duration: 1000,
-                useNativeDriver: true,
-                }
-            ).start();
-        }.bind(this), 1000);
+          Animated.timing(
+              fadeAnim,
+              {
+              toValue: 1,
+              duration: 1000,
+              useNativeDriver: true,
+              }
+          ).start();
+        }, 1000);
     }, [])
   
     return (

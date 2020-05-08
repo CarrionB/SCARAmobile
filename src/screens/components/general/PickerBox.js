@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Picker, View, Text } from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign';
-import { width, resizeFactor } from '../../res/constants';
-import { styles } from '../../res/styles';
+import { width, resizeFactor } from '../../../res/constants';
+import { styles } from '../../../res/styles';
 
 class PickerBox extends Component {
   constructor(props) {

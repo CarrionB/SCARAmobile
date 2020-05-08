@@ -9,14 +9,15 @@ export const getData = () => {
     database.ref('Aulas/').on('value', function (snapshot){
       var classrooms = snapshot.val();
       var keysAu = Object.keys(snapshot.val());
+      
       keysAu.forEach(item => {
         classroomList.push(item);
       })
-
+      
       for(var i = 0; i < keysAu.length; i++){
         var kAu = keysAu[i];
         var aula = classrooms[kAu];
-        var grupos = aula.Grupos; 
+        var grupos = aula.Grupos;
         var keysGr = Object.keys(grupos);
         
         for(var j = 0; j< keysGr.length; j++)
@@ -29,16 +30,16 @@ export const getData = () => {
 
           if(displayName.toUpperCase() === (nombresProf + " " + apellidosProf))
           {
-            // console.log('grupo valido', nombresProf, apellidosProf)
-            // console.log(grupos[kGR])
             groupList.push(grupos[kGR]);
           }
         }
       }
+
       for(var i = 0; i < groupList.length; i++){
         const found = subjectList.find(element => 
           element === groupList[i].Materia.Nombre
-        );
+        )
+
         if(!found){
           subjectList.push(groupList[i].Materia.Nombre);
         }
