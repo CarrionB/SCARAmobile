@@ -173,6 +173,7 @@ class AttendanceRecord extends Component {
     this.setState({showResults:false});
   }
 
+  
   sleep = () => {
     this.setState({showLoading:true});
     
@@ -237,7 +238,7 @@ class AttendanceRecord extends Component {
 
         <Text style = {styles.screenTitle}
         >
-          Horarios de Aulas
+          Registros de asistencia
         </Text>
 
         <CheckBoxContainer
