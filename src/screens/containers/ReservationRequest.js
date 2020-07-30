@@ -167,7 +167,7 @@ class ReservationRequest extends Component {
     
     setTimeout(function(){
       this.setState({showLoading:false});
-    }.bind(this), 3000);
+    }.bind(this), 4000);
 
     setTimeout(function(){
       console.log(this.props.error)
@@ -187,7 +187,7 @@ class ReservationRequest extends Component {
           'La solicitud se ha registrado con exito'
         )
       }
-    }.bind(this), 3000);
+    }.bind(this), 4100);
   }
 
   showAlert = (title, message) => {
@@ -252,6 +252,8 @@ class ReservationRequest extends Component {
   getCorrespondingGroups = (subjectName) =>
   {
     var groupNames = this.state.groupNames;
+
+    console.log(groupNames)
     groupNames.splice(0,groupNames.length);
     
     var groupListAux = this.props.data.groupList;

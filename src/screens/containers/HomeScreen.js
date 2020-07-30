@@ -47,6 +47,7 @@ class HomeScreen extends Component {
             ]}>
               Solicitudes enviadas
             </Text>
+            {this.props.data &&
             <DataTable
               heightFactor = {0.2}
               rowHeaderVisible = {false}
@@ -54,7 +55,7 @@ class HomeScreen extends Component {
               tableHead = {[]}
               tableData = {this.props.data}
               widthArr = {tableWidthArrs.requests}
-            />
+            />}
           </View>
 
           <View style = {styles.buttonRow}>

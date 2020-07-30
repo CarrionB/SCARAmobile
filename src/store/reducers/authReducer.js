@@ -5,7 +5,6 @@ const initState = {
 }
 
 const authReducer = (state = initState, action) => {
-  console.log(action)
   switch(action.type){
     case 'AUTH_SUCCESS':
       console.log('Usuario ingresado');

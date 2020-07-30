@@ -29,6 +29,8 @@ export const getSchedule = (queryData) => {
       schedule.push(rowData);
     }
 
+    console.log(schedule)
+
     database.ref('Aulas/'+ queryData.selectedClass).on('value', function (data){
       var grupos = data.val().Grupos; 
       var keysGr = Object.keys(grupos);
@@ -41,6 +43,7 @@ export const getSchedule = (queryData) => {
         var keysHor = Object.keys(horario); 
         var recuperacion = grupos[kGR].Recuperacion;
         var grupoValido = true;
+        console.log(nombreGR,nombreMat)
         if (recuperacion == 1)
         {	
           var fechaInicio = new Date(grupos[kGR].FechaInicio);
@@ -61,25 +64,27 @@ export const getSchedule = (queryData) => {
         }
         if(grupoValido)
         {
+          console.log("grupo valido")
           for(var k = 0; k< keysHor.length; k++)
           {
             var kHor = keysHor[k];
             var dia = horario[kHor].Dia;
             var horaInicio = new Date(horario[kHor].HoraInicio);
             var horaFin = new Date(horario[kHor].Horafin);
-            // console.log(dia, horaInicio.getUTCHours(),'-',horaFin.getUTCHours());
+            console.log(dia, horaInicio.getHours(),'-',horaFin.getHours());
             for(var i = 0; i < daysOfWeek.length; i++){
               if(dia === daysOfWeek[i])
               {
-                // console.log(nombreMat,horaInicio,horaFin);
-                schedule [horaInicio.getUTCHours()-7][i] = 'Ocupado';
-                var totalHours = horaFin.getUTCHours() - horaInicio.getUTCHours();
+                console.log(nombreMat,horaInicio,horaFin);
+                schedule [horaInicio.getHours()-7][i] = 'Ocupado';
+                var totalHours = horaFin.getHours() - horaInicio.getHours();
+                console.log(totalHours)
                 if(totalHours==2){
-                  schedule [horaInicio.getUTCHours()-6][i] = 'Ocupado';
+                  schedule [horaInicio.getHours()-6][i] = 'Ocupado';
                 }
                 if(totalHours==3){
-                  schedule [horaInicio.getUTCHours()-6][i] = 'Ocupado';
-                  schedule [horaInicio.getUTCHours()-5][i] = 'Ocupado';
+                  schedule [horaInicio.getHours()-6][i] = 'Ocupado';
+                  schedule [horaInicio.getHours()-5][i] = 'Ocupado';
                 }
               }
             }
