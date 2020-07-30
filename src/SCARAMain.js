@@ -21,7 +21,6 @@ class SCARAMain extends Component {
 
     hidePresentation() {
         setTimeout(function(){
-            console.log('isloggenin main')
             this.props.isLoggedIn();
             if(this.props.loggedIn)
             {

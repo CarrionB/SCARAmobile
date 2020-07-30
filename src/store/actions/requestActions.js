@@ -78,13 +78,8 @@ const validateRequest = (classroom, request) => {
       var ranura = classroom.Grupos[key].Horario[keyR];
       var horaInicio = new Date(ranura.HoraInicio);
       var horaFin = new Date(ranura.Horafin);
-      console.log(horaInicio.getHours(),horaFin.getHours());
-      console.log(request.HoraIni, request.HoraFin);
       if(ranura.Dia === daysOfWeek[request.FechaReserva.getDay()-1])
       {
-        console.log(horaInicio.getHours(),horaFin.getHours());
-        console.log(request.HoraIni, request.HoraFin);
-
         if(horaFin.getHours() >= request.HoraFin 
         && horaInicio.getHours() <= request.HoraIni)
         {
@@ -133,8 +128,6 @@ export const getRequest = () => {
 
           dateRequest.setHours(0,0,0,0);
           dateToday.setHours(0,0,0,0);
-
-          // console.log(dateRequest, dateToday)
 
           if(firebase.auth().currentUser.uid === requestList[key].Cedula){
             if(dateRequest >= dateToday){
@@ -185,8 +178,6 @@ export const getRequest = () => {
         rowData.push('');
         tableData.push(rowData);
       }
-
-      console.log(tableData)
 
       dispatch({type: 'REQUEST_DATA_LOADED', tableData})
     })

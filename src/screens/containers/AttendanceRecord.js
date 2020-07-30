@@ -42,9 +42,6 @@ class AttendanceRecord extends Component {
     var endDate = this.state.queryData.selectedEndDate
     
     if(startDate.getTime() <= endDate.getTime()){
-      console.log('query data')
-      console.log(this.state.queryData);
-
       this.props.getRecords(
         this.state.queryData,
         this.props.data.groupList
@@ -137,7 +134,6 @@ class AttendanceRecord extends Component {
   }
 
   setDate = (event, date) => {
-    console.log(this.state.dateToPick) 
     if(typeof date !== 'undefined')
     {
       switch (this.state.dateToPick){
@@ -163,7 +159,6 @@ class AttendanceRecord extends Component {
           break;
       }
     }
-    console.log(this.state)
   }
 
   dateToString = (date) => {
