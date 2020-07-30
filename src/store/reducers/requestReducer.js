@@ -17,7 +17,7 @@ const requestReducer = (state = initState, action) => {
             return {
                 ...state,
                 error: true
-            };;
+            };
         case 'REQUEST_DATA_LOADED':
             console.log(action)
             return {

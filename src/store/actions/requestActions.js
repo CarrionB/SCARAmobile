@@ -52,11 +52,17 @@ export const createRequest = (request) =>{
           HoraFin: request.HoraFin
         })
         .then(() =>{
+
           dispatch({type: 'CREATE_REQUEST', request})
         })
         .catch((error) => {
           dispatch({type: 'CREATE_REQUEST_ERROR', error})
         });
+      }
+      else
+      {
+        let error = "true";
+        dispatch({type: 'CREATE_REQUEST_ERROR', error})
       }
     }, 1000);
   }
@@ -72,28 +78,30 @@ const validateRequest = (classroom, request) => {
       var ranura = classroom.Grupos[key].Horario[keyR];
       var horaInicio = new Date(ranura.HoraInicio);
       var horaFin = new Date(ranura.Horafin);
+      console.log(horaInicio.getHours(),horaFin.getHours());
+      console.log(request.HoraIni, request.HoraFin);
       if(ranura.Dia === daysOfWeek[request.FechaReserva.getDay()-1])
       {
-        console.log(horaInicio.getUTCHours(),horaFin.getUTCHours());
+        console.log(horaInicio.getHours(),horaFin.getHours());
         console.log(request.HoraIni, request.HoraFin);
 
-        if(horaFin.getUTCHours() >= request.HoraFin 
-        && horaInicio.getUTCHours() <= request.HoraIni)
+        if(horaFin.getHours() >= request.HoraFin 
+        && horaInicio.getHours() <= request.HoraIni)
         {
             horaValida= false;
         }
-        if(horaFin.getUTCHours() > request.HoraFin 
-        && horaInicio.getUTCHours() <= request.HoraFin)
+        if(horaFin.getHours() > request.HoraFin 
+        && horaInicio.getHours() <= request.HoraFin)
         {
             horaValida= false;
         }
-        if(horaInicio.getUTCHours() <= request.HoraIni 
-        && horaFin.getUTCHours() > request.HoraIni)
+        if(horaInicio.getHours() <= request.HoraIni 
+        && horaFin.getHours() > request.HoraIni)
         {
             horaValida= false;
         }
-        if(horaFin.getUTCHours() < request.HoraFin 
-        && horaInicio.getUTCHours() > request.HoraIni)
+        if(horaFin.getHours() < request.HoraFin 
+        && horaInicio.getHours() > request.HoraIni)
         {
             horaValida= false;
         }

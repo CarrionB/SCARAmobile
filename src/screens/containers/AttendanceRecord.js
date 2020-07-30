@@ -137,6 +137,7 @@ class AttendanceRecord extends Component {
   }
 
   setDate = (event, date) => {
+    console.log(this.state.dateToPick) 
     if(typeof date !== 'undefined')
     {
       switch (this.state.dateToPick){
@@ -162,6 +163,7 @@ class AttendanceRecord extends Component {
           break;
       }
     }
+    console.log(this.state)
   }
 
   dateToString = (date) => {

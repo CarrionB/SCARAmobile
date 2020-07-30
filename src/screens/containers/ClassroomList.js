@@ -40,6 +40,7 @@ class ClassroomList extends Component {
   onButtonPress = () => {
     var tableTitle = this.setStartEndOfWeek(this.state.queryData.selectedDate);
     this.setState({tableTitle:tableTitle});
+    console.log(this.state.queryData)
     this.props.getSchedule(this.state.queryData);
     this.sleep();
   }
