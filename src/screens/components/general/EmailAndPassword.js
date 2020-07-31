@@ -36,14 +36,12 @@ class EmailAndPassword extends Component {
       this.props.login(this.state.credentials);
       this.setState({showLoading:true})
       setTimeout(function(){
-        console.log('timeout')
         if(!this.props.authError)
         {
           this.props.getRequest();
           this.props.getData();
 
           setTimeout(function(){
-            console.log()
             this.props.isLoggedIn();
           }.bind(this), 3000)
         }

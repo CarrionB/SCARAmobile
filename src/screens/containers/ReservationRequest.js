@@ -33,7 +33,6 @@ class ReservationRequest extends Component {
   }
 
   onButtonPress = () => {
-    
     const {
       HoraFin,
       HoraIni,
@@ -50,7 +49,6 @@ class ReservationRequest extends Component {
       {
         if(HoraFin - HoraIni < 3)
         {
-          console.log(this.state.requestToSend);
           this.props.createRequest(this.state.requestToSend);
           this.sleep();
         }
@@ -78,7 +76,6 @@ class ReservationRequest extends Component {
         {
           if(HoraFin - HoraIni <= 3)
           {
-            console.log(this.state.requestToSend);
             this.props.createRequest(this.state.requestToSend);
             this.sleep();
           }
@@ -105,6 +102,14 @@ class ReservationRequest extends Component {
           'La hora fin no puede ser menor o igual a la hora de inicio'
         )
       }
+    }
+  }
+
+  validateFullFields = () => {
+    const {NombreAu,NombreGr,NombreMat} = this.state.requestToSend
+    if(NombreAu==='' || NombreGr==='' || NombreMat==='')
+    {
+      
     }
   }
 
@@ -170,8 +175,6 @@ class ReservationRequest extends Component {
     }.bind(this), 4000);
 
     setTimeout(function(){
-      console.log(this.props.error)
-
       if(this.props.error)
       {
         this.showAlert(
@@ -213,9 +216,9 @@ class ReservationRequest extends Component {
       {
         case 'date':
           this.setState(prevState => ({
-            requestToSend: {                   // object that we want to update
-              ...prevState.requestToSend,    // keep all other key-value pairs
-              FechaReserva: date       // update the value of specific key
+            requestToSend: {                   
+              ...prevState.requestToSend,    
+              FechaReserva: date       
             },
             showDatePicker: false
           }));
@@ -224,9 +227,9 @@ class ReservationRequest extends Component {
         case 'sTime':
           var hour = date.getHours().valueOf();
           this.setState(prevState => ({
-            requestToSend: {                   // object that we want to update
-              ...prevState.requestToSend,    // keep all other key-value pairs
-              HoraIni: hour       // update the value of specific key
+            requestToSend: {          
+              ...prevState.requestToSend,    
+              HoraIni: hour
             },
             showDatePicker: false
           }));
@@ -253,7 +256,6 @@ class ReservationRequest extends Component {
   {
     var groupNames = this.state.groupNames;
 
-    console.log(groupNames)
     groupNames.splice(0,groupNames.length);
     
     var groupListAux = this.props.data.groupList;

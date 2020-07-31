@@ -77,7 +77,6 @@ class Login extends Component {
     }
 
     render() {
-        console.log(resizeFactor)
         return (
             <View style={styles.loginContainer}>
                 <FadeInView style={styles.loginContainer}>

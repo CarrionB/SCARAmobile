@@ -40,7 +40,6 @@ class ClassroomList extends Component {
   onButtonPress = () => {
     var tableTitle = this.setStartEndOfWeek(this.state.queryData.selectedDate);
     this.setState({tableTitle:tableTitle});
-    console.log(this.state.queryData)
     this.props.getSchedule(this.state.queryData);
     this.sleep();
   }
@@ -51,7 +50,6 @@ class ClassroomList extends Component {
 
   setDate = (event, date) => {
     date = date || this.state.date;
-    console.log(date);
     this.setState(prevState => ({
       queryData: {                   // object that we want to update
         ...prevState.queryData,    // keep all other key-value pairs
@@ -87,7 +85,6 @@ class ClassroomList extends Component {
     this.setState({
       showDatePicker: true
     });
-    console.log('Se ejecuta')
   }
 
   dateToString = (date) => {

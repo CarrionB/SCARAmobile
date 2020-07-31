@@ -29,8 +29,6 @@ export const getSchedule = (queryData) => {
       schedule.push(rowData);
     }
 
-    console.log(schedule)
-
     database.ref('Aulas/'+ queryData.selectedClass).on('value', function (data){
       var grupos = data.val().Grupos; 
       var keysGr = Object.keys(grupos);
@@ -43,18 +41,12 @@ export const getSchedule = (queryData) => {
         var keysHor = Object.keys(horario); 
         var recuperacion = grupos[kGR].Recuperacion;
         var grupoValido = true;
-        console.log(nombreGR,nombreMat)
         if (recuperacion == 1)
         {	
           var fechaInicio = new Date(grupos[kGR].FechaInicio);
           var fechaFin =  new Date(grupos[kGR].FechaFin);
           var fechaInicioAux = new Date(startOfWeek.getFullYear(), startOfWeek.getMonth(), startOfWeek.getDate(),-5,0,0,0);
           var fechaFinAux = new Date(endOfWeek.getFullYear(), endOfWeek.getMonth(), endOfWeek.getDate(),-5,0,0,0);
-          // console.log(fechaInicio,fechaFin);
-          // console.log(fechaInicioAux, fechaFinAux);
-          // console.log(+fechaInicio >= +fechaInicioAux && +fechaInicio <= +fechaFinAux);
-          // console.log(+fechaFin >= +fechaInicioAux && +fechaFin <= +fechaFinAux);
-          // console.log(+fechaInicio < +fechaInicioAux && +fechaFin > +fechaFinAux);
           if (!((+fechaInicio >= +fechaInicioAux && +fechaInicio <= +fechaFinAux) ||
             (+fechaFin >= +fechaInicioAux && +fechaFin <= +fechaFinAux) ||
             (+fechaInicio < +fechaInicioAux && +fechaFin > +fechaFinAux)))
@@ -64,7 +56,6 @@ export const getSchedule = (queryData) => {
         }
         if(grupoValido)
         {
-          console.log("grupo valido")
           for(var k = 0; k< keysHor.length; k++)
           {
             var kHor = keysHor[k];
@@ -77,6 +68,7 @@ export const getSchedule = (queryData) => {
               if(dia === daysOfWeek[i])
               {
                 schedule [horaInicio.getHours()-7][i] = 'Ocupado';
+
                 var totalHours = horaFin.getHours() - horaInicio.getHours();
                 if(totalHours==2){
                   schedule [horaInicio.getHours()-6][i] = 'Ocupado';

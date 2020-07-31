@@ -10,25 +10,19 @@ export const getRecords = (queryData, groupList) => {
       .once('value', function (snapshot){
         records = {...snapshot.val()};
         console.log(records)
+
         if(records != null)
         {
           var keysRecords = Object.keys(records).sort((a, b) => (a > b) ? 1 : ((b > a) ? -1 : 0))
           var recordsAux = [];
-          //console.log(keysRecords)
-          //keysRecords.reverse();
 
           keysRecords.forEach(item => {
-            //console.log(records[item].Fecha)
             var fechaReg = new Date(records[item].Fecha);
             fechaReg = new Date(fechaReg.getFullYear(), fechaReg.getMonth(), fechaReg.getDate(),-5,0,0,0);
             var fechaRegAux = new Date(queryData.selectedStartDate.getFullYear(), queryData.selectedStartDate.getMonth(), queryData.selectedStartDate.getDate(),-5,0,0,0);
             var fechaFinAux = new Date(queryData.selectedEndDate.getFullYear(), queryData.selectedEndDate.getMonth(), queryData.selectedEndDate.getDate(),-5,0,0,0);
-            //console.log(fechaReg,fechaRegAux,fechaFinAux);
-            //console.log(+fechaReg >= +fechaRegAux && +fechaReg <= +fechaFinAux);
             if (+fechaReg >= +fechaRegAux && +fechaReg <= +fechaFinAux)
             {
-              console.log(item)
-
               var filtrar = true;
               fechaReg = new Date(records[item].Fecha);
 
@@ -50,7 +44,6 @@ export const getRecords = (queryData, groupList) => {
                 {
                   let grAux = groupList.find(gr => gr.NombreGr == records[item].NombreGr 
                     && gr.Materia.Nombre === records[item].NombreMat && gr.Horario.find(ranura => {
-                      console.log(gr.Recuperacion)
                       if(ranura.Dia === daysOfWeek[fechaReg.getDay()-1]){
                         let horaInicio = new Date(ranura.HoraInicio);
                         let horaFin = new Date(ranura.Horafin);
@@ -104,7 +97,6 @@ export const getRecords = (queryData, groupList) => {
                     fechaReg.getDate() === rec.fecha.getDate() && 
                     records[item].NombreGr == rec.gr &&
                     records[item].NombreMat == rec.materia)
-                  console.log('index',index)
                   if(index>=0)
                   {
                     records[item].Fecha = new Date(records[item].Fecha)
@@ -113,7 +105,6 @@ export const getRecords = (queryData, groupList) => {
                   else{
                     let grAux = groupList.find(gr => gr.NombreGr == records[item].NombreGr 
                       && gr.Materia.Nombre === records[item].NombreMat && gr.Horario.find(ranura => {
-                        console.log(gr.Recuperacion)
                         if(ranura.Dia === daysOfWeek[fechaReg.getDay()-1]){
                           let horaInicio = new Date(ranura.HoraInicio);
                           let horaFin = new Date(ranura.Horafin);
@@ -158,11 +149,10 @@ export const getRecords = (queryData, groupList) => {
                     }
                   }
                 }
-                
-            }}
+              }
+            }
           })
           recordsAux = recordsAux.sort((a, b) => (a.fecha > b.fecha) ? 1 : ((b.fecha > a.fecha) ? -1 : 0))
-          console.log("regs", recordsAux)
           recordsAux.forEach(list => {
             list.records=list.records.sort((a, b) => 
               (a.Fecha.getHours() >= b.Fecha.getHours()) ? 1 : 
