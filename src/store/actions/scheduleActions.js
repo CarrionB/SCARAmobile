@@ -71,14 +71,13 @@ export const getSchedule = (queryData) => {
             var dia = horario[kHor].Dia;
             var horaInicio = new Date(horario[kHor].HoraInicio);
             var horaFin = new Date(horario[kHor].Horafin);
-            console.log(dia, horaInicio.getHours(),'-',horaFin.getHours());
+            horaInicio.setTime( horaInicio.getTime() + new Date().getTimezoneOffset()*60*1000 )
+            horaFin.setTime( horaFin.getTime() + new Date().getTimezoneOffset()*60*1000 )
             for(var i = 0; i < daysOfWeek.length; i++){
               if(dia === daysOfWeek[i])
               {
-                console.log(nombreMat,horaInicio,horaFin);
                 schedule [horaInicio.getHours()-7][i] = 'Ocupado';
                 var totalHours = horaFin.getHours() - horaInicio.getHours();
-                console.log(totalHours)
                 if(totalHours==2){
                   schedule [horaInicio.getHours()-6][i] = 'Ocupado';
                 }

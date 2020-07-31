@@ -69,6 +69,7 @@ export const createRequest = (request) =>{
 }
 
 const validateRequest = (classroom, request) => {
+  console.log(classroom.NombreAu)
   var horaValida = true;
   var daysOfWeek = ['Lunes','Martes','Miercoles','Jueves', 'Viernes','Sabado'];
   var keysAu = Object.keys(classroom.Grupos)
@@ -78,32 +79,36 @@ const validateRequest = (classroom, request) => {
       var ranura = classroom.Grupos[key].Horario[keyR];
       var horaInicio = new Date(ranura.HoraInicio);
       var horaFin = new Date(ranura.Horafin);
-      console.log(horaInicio.getHours(),horaFin.getHours());
-      console.log(request.HoraIni, request.HoraFin);
       if(ranura.Dia === daysOfWeek[request.FechaReserva.getDay()-1])
       {
+        console.log(ranura.HoraInicio,ranura.Horafin)
+        console.log(horaInicio, horaFin)
         console.log(horaInicio.getHours(),horaFin.getHours());
         console.log(request.HoraIni, request.HoraFin);
 
-        if(horaFin.getHours() >= request.HoraFin 
-        && horaInicio.getHours() <= request.HoraIni)
+        if(horaFin.getHours() + 5 >= request.HoraFin 
+        && horaInicio.getHours() +5 <= request.HoraIni)
         {
+          console.log(1)
             horaValida= false;
         }
-        if(horaFin.getHours() > request.HoraFin 
-        && horaInicio.getHours() <= request.HoraFin)
+        if(horaFin.getHours() +5 >= request.HoraFin 
+        && horaInicio.getHours() +5 < request.HoraFin)
         {
-            horaValida= false;
+          console.log(2)
+          horaValida= false;
         }
-        if(horaInicio.getHours() <= request.HoraIni 
-        && horaFin.getHours() > request.HoraIni)
+        if(horaInicio.getHours() +5 <= request.HoraIni 
+        && horaFin.getHours() +5 > request.HoraIni)
         {
-            horaValida= false;
+          console.log(3)
+          horaValida= false;
         }
-        if(horaFin.getHours() < request.HoraFin 
-        && horaInicio.getHours() > request.HoraIni)
+        if(horaFin.getHours() +5 < request.HoraFin 
+        && horaInicio.getHours() +5 > request.HoraIni)
         {
-            horaValida= false;
+          console.log(4)
+          horaValida= false;
         }
       }
     })
