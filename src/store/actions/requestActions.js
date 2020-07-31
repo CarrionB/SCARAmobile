@@ -69,6 +69,7 @@ export const createRequest = (request) =>{
 }
 
 const validateRequest = (classroom, request) => {
+  console.log(classroom.NombreAu)
   var horaValida = true;
   var daysOfWeek = ['Lunes','Martes','Miercoles','Jueves', 'Viernes','Sabado'];
   var keysAu = Object.keys(classroom.Grupos)
@@ -80,25 +81,30 @@ const validateRequest = (classroom, request) => {
       var horaFin = new Date(ranura.Horafin);
       if(ranura.Dia === daysOfWeek[request.FechaReserva.getDay()-1])
       {
-        if(horaFin.getHours() >= request.HoraFin 
-        && horaInicio.getHours() <= request.HoraIni)
+
+        if(horaFin.getHours() + 5 >= request.HoraFin 
+        && horaInicio.getHours() +5 <= request.HoraIni)
         {
+          console.log(1)
             horaValida= false;
         }
-        if(horaFin.getHours() > request.HoraFin 
-        && horaInicio.getHours() <= request.HoraFin)
+        if(horaFin.getHours() +5 >= request.HoraFin 
+        && horaInicio.getHours() +5 < request.HoraFin)
         {
-            horaValida= false;
+          console.log(2)
+          horaValida= false;
         }
-        if(horaInicio.getHours() <= request.HoraIni 
-        && horaFin.getHours() > request.HoraIni)
+        if(horaInicio.getHours() +5 <= request.HoraIni 
+        && horaFin.getHours() +5 > request.HoraIni)
         {
-            horaValida= false;
+          console.log(3)
+          horaValida= false;
         }
-        if(horaFin.getHours() < request.HoraFin 
-        && horaInicio.getHours() > request.HoraIni)
+        if(horaFin.getHours() +5 < request.HoraFin 
+        && horaInicio.getHours() +5 > request.HoraIni)
         {
-            horaValida= false;
+          console.log(4)
+          horaValida= false;
         }
       }
     })

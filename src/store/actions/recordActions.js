@@ -4,11 +4,13 @@ export const getRecords = (queryData, groupList) => {
   return (dispatch, getState, {firebase})=>{
     const database = firebase.database();
     let records = []
-    var table = []
+    let table = []
     var daysOfWeek = ['Lunes','Martes','Miercoles','Jueves', 'Viernes','Sabado'];
     database.ref('Registros/'+firebase.auth().currentUser.uid)
-      .on('value', function (snapshot){
-        records = snapshot.val();
+      .once('value', function (snapshot){
+        records = {...snapshot.val()};
+        console.log(records)
+
         if(records != null)
         {
           var keysRecords = Object.keys(records).sort((a, b) => (a > b) ? 1 : ((b > a) ? -1 : 0))
@@ -45,6 +47,9 @@ export const getRecords = (queryData, groupList) => {
                       if(ranura.Dia === daysOfWeek[fechaReg.getDay()-1]){
                         let horaInicio = new Date(ranura.HoraInicio);
                         let horaFin = new Date(ranura.Horafin);
+                        console.log(horaInicio.getUTCHours(),horaFin.getUTCHours(),fechaReg.getUTCHours())
+                        console.log(horaInicio.getHours(),horaFin.getHours(),fechaReg.getHours())
+                        console.log(horaInicio.getTimezoneOffset(),horaFin.getTimezoneOffset(),fechaReg.getTimezoneOffset())
                         if(horaFin.getUTCHours() >= fechaReg.getUTCHours() && 
                         horaInicio.getUTCHours() <= fechaReg.getUTCHours())
                         {
@@ -59,6 +64,9 @@ export const getRecords = (queryData, groupList) => {
                       if(ranura.Dia === daysOfWeek[fechaReg.getDay()-1]){
                         horaInicio = new Date(ranura.HoraInicio);
                         horaFin = new Date(ranura.Horafin);
+                        console.log(horaInicio.getUTCHours(),horaFin.getUTCHours(),fechaReg.getUTCHours())
+                          console.log(horaInicio.getHours(),horaFin.getHours(),fechaReg.getHours())
+                          console.log(horaInicio.getTimezoneOffset(),horaFin.getTimezoneOffset(),fechaReg.getTimezoneOffset())
                         if(horaFin.getUTCHours() >= fechaReg.getUTCHours() && 
                         horaInicio.getUTCHours() <= fechaReg.getUTCHours()){
                           return ranura
@@ -100,6 +108,9 @@ export const getRecords = (queryData, groupList) => {
                         if(ranura.Dia === daysOfWeek[fechaReg.getDay()-1]){
                           let horaInicio = new Date(ranura.HoraInicio);
                           let horaFin = new Date(ranura.Horafin);
+                          console.log(horaInicio.getUTCHours(),horaFin.getUTCHours(),fechaReg.getUTCHours())
+                          console.log(horaInicio.getHours(),horaFin.getHours(),fechaReg.getHours())
+                          console.log(horaInicio.getTimezoneOffset(),horaFin.getTimezoneOffset(),fechaReg.getTimezoneOffset())
                           if(horaFin.getUTCHours() >= fechaReg.getUTCHours() && 
                           horaInicio.getUTCHours() <= fechaReg.getUTCHours()){
                             return ranura
@@ -113,6 +124,9 @@ export const getRecords = (queryData, groupList) => {
                         if(ranura.Dia === daysOfWeek[fechaReg.getDay()-1]){
                           horaInicio = new Date(ranura.HoraInicio);
                           horaFin = new Date(ranura.Horafin);
+                          console.log(horaInicio.getUTCHours(),horaFin.getUTCHours(),fechaReg.getUTCHours())
+                          console.log(horaInicio.getHours(),horaFin.getHours(),fechaReg.getHours())
+                          console.log(horaInicio.getTimezoneOffset(),horaFin.getTimezoneOffset(),fechaReg.getTimezoneOffset())
                           if(horaFin.getUTCHours() >= fechaReg.getUTCHours() && 
                           horaInicio.getUTCHours() <= fechaReg.getUTCHours()){
                             return ranura
@@ -146,26 +160,30 @@ export const getRecords = (queryData, groupList) => {
             let rowData = [];
             let horaSalida = new Date(list.records[list.records.length-1].Fecha)
             let horaEntrada = new Date(list.records[0].Fecha)
+            // horaSalida.setTime( horaSalida.getTime() + new Date().getTimezoneOffset()*60*1000 )
+            // horaEntrada.setTime( horaEntrada.getTime() + new Date().getTimezoneOffset()*60*1000 )
+            // list.ranura.HoraInicio.setTime( list.ranura.HoraInicio.getTime() + new Date().getTimezoneOffset()*60*1000 )
+            // list.ranura.Horafin.setTime( list.ranura.Horafin.getTime() + new Date().getTimezoneOffset()*60*1000 )
             rowData.push(list.materia);
             rowData.push(list.gr);
             rowData.push(list.records[0].NombreAula);
             rowData.push(list.fecha.getFullYear() + '-' +
               (list.fecha.getMonth()+1) + '-' + list.fecha.getDate());
-            rowData.push(list.ranura.HoraInicio.getHours());
-            rowData.push(list.ranura.Horafin.getHours());
-            rowData.push(horaEntrada.getHours()+":"+horaEntrada.getMinutes());
-            rowData.push(horaSalida.getHours()
+            rowData.push(list.ranura.HoraInicio.getHours()+5);
+            rowData.push(list.ranura.Horafin.getHours()+5);
+            rowData.push((horaEntrada.getHours()+5)+":"+horaEntrada.getMinutes());
+            rowData.push((horaSalida.getHours()+5)
               +":"+horaSalida.getMinutes());
             table.push(rowData);
+
           })
-        }
-        
-        if(table.length == 0){
-          dispatch({type: 'RECORDS_NULL'});
-        }
-        else
-        {
-          dispatch({type: 'RECORDS_OBTAINED', table});
+          if(table.length == 0){
+            dispatch({type: 'RECORDS_NULL'});
+          }
+          else
+          {
+            dispatch({type: 'RECORDS_OBTAINED', table});
+          }
         }
       }
     )
