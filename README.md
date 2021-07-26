@@ -16,7 +16,7 @@ Para desarrollar este proyecto se uso
 * React Native 0.62
 * Node 12.6.0
 
-Para ingresar en la aplicación, es necesario tener las credenciales una vez se ha registrado a traves de la aplicación de as=dministracion.
+Para ingresar en la aplicación, es necesario tener las credenciales una vez se ha registrado a traves de la aplicación de administracion.
 
 ### Carácteristicas
 ---
